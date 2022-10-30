@@ -1,0 +1,54 @@
+Task:
+
+ Develop a function uniqueletters(refstring) that takes a string refstring as a parameter and returns a string with repeated letters in refstring replaced by + .
+
+ For example:
+
+ uniqueletters('settle') will return the string ‘set+l+’
+
+ uniqueletters('printing') will return the string ‘print++g’
+
+
+
+CODE STARTS BELOW THIS LINE
+------------------------------------------------------------------------------------------------------------
+
+
+def uniqueletters(refstring):
+    # This is the new string that will be returned at the end of this function
+    newstring = ""
+    
+    
+    # x1 serves as an arithmetic variable to aid us in forming the newstring
+    x1 = 0
+    for letter in refstring:
+        x = refstring.find(letter)
+        x1 = x1 + 1
+        difference = x1 - x
+
+        # x1 should always be only 1 greater than x (the refstring index). This is done with the increments above
+        if difference == 1:
+            newstring = newstring + letter
+            
+        # If the difference is greater than 1, we replace the letter with the "+" symbol
+        # This occurs because the find() function will always return the first index location. Thus, if the letter is repeated, x will not increase with x1, and thus the difference will be something other than 1.
+        # This resets when there is a non-repeated letter because the x index instantly catches up by zooming ahead
+        else:
+            newstring = newstring + "+"
+
+    return newstring
+            
+            
+    
+
+          
+            
+# Some tests
+a = uniqueletters('settle')
+print(a)
+
+b = uniqueletters('printing')
+print(b)
+
+c = uniqueletters('clear')
+print(c)
