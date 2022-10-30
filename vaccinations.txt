@@ -1,0 +1,71 @@
+Task:
+
+This is a modified question from the last week. But you can use iterations now.
+
+The goal is to report weekly on a 10 weeks vaccination drive. The program will ask for the following input from the user:
+
+Population of the state (in millions)
+
+Number of people already vaccinated (in millions)
+
+Current weekly vaccination rate (in millions)
+
+Weekly Increase in vaccination Rate as a percentage (WIR)
+
+The number of vaccinations administered each week will be WIR percent higher than the number administered the previous week.
+
+The program will print the number of people vaccinated at the end of each week during the drive. Finally, the program will print the percentage of the population vaccinated at the end of the drive.
+
+Program Prompt: Enter the Population of the state (in millions)
+User response: 60
+Program Prompt: Enter the Number of people already vaccinated (in millions)
+User response: 20
+Program Prompt: Enter the Current weekly vaccination rate (in millions)
+User response: 1.2
+Program Prompt: Enter the Weekly Increase in vaccination Rate as a percentage (WIR)
+User response: 20
+Program prints/output:
+
+At the end of week 1, people vaccinated (in millions): 21.2
+At the end of week 2, people vaccinated (in millions): 22.64
+At the end of week 3, people vaccinated (in millions): 24.368
+At the end of week 4, people vaccinated (in millions): 26.4416
+At the end of week 5, people vaccinated (in millions): 28.92992
+At the end of week 6, people vaccinated (in millions): 31.915904
+At the end of week 7, people vaccinated (in millions): 35.4990848
+At the end of week 8, people vaccinated (in millions): 39.79890176
+At the end of week 9, people vaccinated (in millions): 44.958682112
+At the end of week 10, people vaccinated (in millions): 51.1504185344
+The percentage of the population vaccinated at the end of the drive is 85.25069755733332
+
+
+
+CODE STARTS BELOW THIS LINE
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+# Takes user input for the following values and converts them to float
+population = float(input("Enter the Population of the state (in millions)"))
+vac_population = float(input("Enter the Number of people already vaccinated (in millions)"))
+weekly_vr = float(input("Enter the Current weekly vaccination rate (in millions)"))
+WIR = float(input("Enter the Weekly Increase in vaccination Rate as a percentage (WIR)"))
+
+# Converts WIR into a mathematical percentage that can be multiplied appropriately with other values later in the program
+WIR = WIR * 0.01
+
+
+# Prints 10 reports, each of which correspond with the week (i) Incrementational math is done in the loop
+for i in range(1,11):
+     
+    vac_population = vac_population + weekly_vr
+        
+    weekly_vr = weekly_vr + (WIR * weekly_vr)
+    print("At the end of week " + str(i) + ", people vaccinated (in millions):", vac_population)
+
+
+# Population of vaccinated percent is taken and rounded. At the end, the final report is displayed.
+vac_percent = (vac_population / population) * 100
+vac_percent = round(vac_percent, 2)
+print("The percentage of the population vaccinated at the end of the drive is " + "%" + str(vac_percent))
