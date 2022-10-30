@@ -1,0 +1,65 @@
+Task:
+
+In this question, you will experimentally verify the sensitivity of using a precise Pi to the accuracy of computing the area of a circle. You need to perform the following activities with a Python program:
+
+Ask the user to input a radius value. It may be an integer or a float.
+
+Compute the area of a circle with that radius using Pi from the Python Math Library. Assign the area to a variable, say realA.
+
+Now compute the area of the circle using the Pi value with precision 1,2, and 3 points after the decimal place. (i.e., Pi = 3.1, 3.14 & 3.141). Then print the percentage difference between each of the areas calculated using each of these values of Pi and realA.
+
+Note: Difference is: [Area from Math Library] – [Area you calculate with PI = 3.xxx]
+
+
+
+CODE STARTS BELOW THIS LINE
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+import math
+
+# User input for radius
+radius = float(input("Please enter a radius value:"))
+
+# Variable pi is assigned the math.pi value
+pi = math.pi
+
+
+# Real area calculated and printed using pi * r**2 formula
+realA = radius**2 * pi
+print("realA:", realA)
+
+# Areas 1-3 are calculated and printed using pi * r**2 formula, with pi varying
+area1 = radius**2 * 3.1
+print("area1:", area1)
+area2 = radius**2 * 3.14
+print("area2:", area2)
+area3 = radius**2 * 3.141
+print("area3:", area3)
+
+print("")
+
+
+
+# Percent difference is calculated for each area type between the real area and area with different pi value used
+percent_diff1 = (abs(realA - area1) / ((realA + area1) / 2) * 100)
+print("percent_diff1", percent_diff1)
+
+percent_diff2 = (abs(realA - area2) / ((realA + area2) / 2) * 100)
+print("percent_diff2", percent_diff2)
+
+percent_diff3 = (abs(realA - area3) / ((realA + area3) / 2) * 100)
+print("percent_diff3", percent_diff3)
+
+print("")
+
+
+# Real area versus percentage differences with different pi values used
+print("The real area of the circle is :", realA)
+
+print("with pi= 3.1, the percentage difference is: " + str(round(percent_diff1,2)) + "%")
+print("with pi= 3.14, the percentage difference is: " + str(round(percent_diff2,2)) + "%")
+print("with pi= 3.141, the percentage difference is: " + str(round(percent_diff3,2)) + "%")
+
