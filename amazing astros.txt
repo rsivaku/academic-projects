@@ -1,0 +1,44 @@
+Task:
+
+You have to write a function upAstros(refstring) that takes a string as a parameter. It returns the same string with the first occurrence of the substring ‘Astros’ replaced by the string ‘Amazing Astros’. If the substring ‘Astros’ does not exist, it returns the string unchanged.
+
+For example:
+
+upAstros("Yankees played Astros again")
+
+will return: ‘Yankees played Amazing Astros again’
+
+upAstros("Astros will play in Houston. Astros will win")
+
+will return: ‘Amazing Astros will play in Houston. Astros will win’
+
+
+CODE STARTS BELOW THIS LINE
+---------------------------------------------------------------------------------------------------------------------
+
+
+def upAstros(refstring):
+    newstring = ""
+    x = refstring.find("Astros")
+    
+    # If Astros is located in refstring (if not, x = -1, and thus this if-block does not run)
+    if x != -1:
+        # Newstring has the refstring from the beginning to the index before "Astros" is present
+        # Following that, 'Amazing' is added to the newstring
+        # This is then followed by the refstring from the index including Astros all the way to the end
+        newstring = newstring + refstring[0:x] + 'Amazing ' + refstring[x:]
+        return newstring
+    
+    # If Astros is not present, then the string is returned as it was inputted
+    else:
+        return refstring
+
+    
+a = upAstros("Yankees played Astros again")
+print(a)
+
+b = upAstros("Astros will play in Houston. Astros will win")
+print(b)
+
+c = upAstros("This string does not have the keyword")
+print(c)
