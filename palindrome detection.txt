@@ -1,0 +1,57 @@
+Task:
+
+A palindrome is a string that reads identical forwards and backwards. Examples include abba, abcba, a1b1b1a, houstonnotsuoh etc. Comparison is case-sensitive, that is, Abba is not a palindrome.
+
+Your task is to write a function ispalindrome(refstring) that reads a string refstring and returns True if both of the following are true:
+
+The refstring is a palindrome
+
+The refstring has at least three characters
+
+Otherwise it returns False
+
+For example:
+
+ispalindrome('racecar') should return True
+
+ispalindrome('Racecar') should return False
+
+ispalindrome('houston') should return False
+
+ispalindrome('123XX321') should return True
+
+ispalindrome('rr') should return False
+
+
+CODE STARTS BELOW THIS LINE
+--------------------------------------------------------------------------------------------------------------------------
+
+import math
+
+def ispalindrome(refstring):
+    
+    # Captures the length of the string and splits that value in two (rounded down)
+    x = len(refstring)
+    xhalf = math.floor(x/2)  
+    
+    
+    
+    positive_end = ""
+    negative_end = ""
+    
+    # In the range of half of the length of the refstring, the positive end and negative end are created by working from the front or back of the refstring for positive end and negative end respectively.
+    for i in range(xhalf):
+        positive_end = positive_end + refstring[i]
+        negative_end = negative_end + refstring[(i+1)*-1]
+    
+    # If the refstring has more than 2 characters AND the positive end is the same as the negative end, refstring is a palindrome.
+    if len(refstring) > 2 and positive_end == negative_end:
+        return True
+    else:
+        return False
+
+    
+    
+z = ispalindrome('5422123XX3212245')    
+
+print(z)
