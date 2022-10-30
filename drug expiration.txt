@@ -1,0 +1,29 @@
+Task:
+
+A drug loses decayrate percent of its potency every month. Also, a drug is considered expired if it loses more than 50% potency. Your goal is to write a function  WhenExpired(decayrate)  that returns the number of months after which the drug is considered expired.
+
+Example 1: WhenExpired(20) should return 4
+
+Example 2: WhenExpired(50) should return 2
+
+
+
+CODE STARTS BELOW THIS LINE
+------------------------------------------------------------------------------------------------------
+
+def WhenExpired(decayrate):
+    potency = 100
+    months = 0
+    
+    #While potency is 50 or above, potency will be decreased each time by the decay rate.
+    # For each month the drug survives, month is incremented by 1. Finally, the lifetime in months is returned and printed.
+    while potency >= 50:
+        potency = potency - potency * decayrate/100
+        months = months + 1
+    return months
+
+a = WhenExpired(20)
+print(a)
+
+b = WhenExpired(50)
+print(b)
