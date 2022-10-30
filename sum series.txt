@@ -1,0 +1,72 @@
+Task:
+
+Develop a function sumseries(N,K) that computes and returns the sum of the series: N + (N+1) + (N+2) +… (N+(K-1))
+
+A call to sumseries(10, 5) should return 60
+
+Develop a function sumrandseries(N,K) that computes K random numbers between N and N+K, including (N and N+K as possible random numbers) and returns their sum.
+
+For example, a call to sumrandseries(10,5) returned 59. The random numbers generated in this case were 10, 13, 12, 10, 14.
+
+Develop a function compareseries(N,K) that returns the difference sumseries(N,K) - sumrandseries(N,K).
+
+A call to compareseries(10,5) returned 1 for the above scenario.
+
+Then write a program that takes N and K as user input and calls the function compareseries(N,K) 4 times and and prints the values returned by it.
+
+Example input
+
+
+
+CODE STARTS BELOW THIS LINE
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+import random
+
+# For range in K, increment num is N + 0 on first iteration.
+# With each iteration, the num variable (outside the for loop) is incremented by increment_num, and count is incremented by 1
+# Next iteration will make increment_num N + count, which is used to increment num until the end of the loop. 
+def sumseries(N,K):
+    count = 0
+    num = 0
+    for i in range(K):
+        increment_num = N + count
+        num = num + increment_num
+        count = count + 1
+ 
+    return num
+
+
+# This is similar to the above function, except it uses the rand function in range of N and the increment_num to get a random int, which is stored in r.
+# The randnum (this function's version of num) is incremented by r each time the loop runs.
+def sumrandseries(N,K):
+    count = 0
+    randnum = 0
+    for i in range(K):
+        increment_num = N + count
+        r = random.randrange(N,increment_num+2)
+        randnum = randnum + r
+        count = count + 1
+     
+    return randnum
+    
+
+# This is where the previous above two functions are called (stored as a and b respectively) so that the difference can be found. 
+def compareseries(N,K):
+    a = sumseries(N,K)
+    print("sumseries with N = 10 and K = 5 returned", a)
+    b = sumrandseries(N,K)
+    print("sumrandseries with N = 10 and K = 5 returned", b)
+    difference = a - b
+    print("Difference between sumseries and sumrandseries is", difference)
+    print("")
+
+# Takes user input for K and N
+user_K = int(input("Please enter an integer for K"))
+user_N = int(input("Please enter an integer for N"))
+
+
+# The compareseries function is called 4 times, using user inputted K and N integers as arguments
+for i in range(4):
+    compareseries(user_K, user_N)
