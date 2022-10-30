@@ -1,0 +1,225 @@
+Task: (NOT A SCHOOL ASSIGNED PROJECT; DONE IN FREE-TIME AS AN EXPERIMENT)
+
+Create a program that mimics a video game in spawning dinosaur AI. The program must take user input for each dinosaur species spawn density from a scale of 0-5. 
+If the user enters 0, no dinosaurs of that species should spawn.
+
+After taking user input, the program must let the user know how many of each dinosaur species spawned.
+
+Additionally, the program must tell the user whether EACH individual dinosaur in each species is male or female
+
+Finally, the program must tell the user the rarity of EACH individual dinosaur in each species AND tell the user which skin (texture) they are using. 
+
+
+
+
+CODE STARTS BELOW THIS LINE - AND UNTIL THE NEXT LINE
+-------------------------------------------------------------------------------------------
+
+
+
+
+import random
+
+def prompt():
+    stego_density = 3
+    anky_density = 3
+    para_density = 3
+    trike_density = 3
+    cerato_density = 2
+    rex_density = 1
+    
+    density_list = [stego_density, anky_density, para_density, trike_density, cerato_density, rex_density]
+    game_species = ["stego", "anky", "para", "trike", "cerato", "rex"]
+    
+    increment_num = 0
+    for name in game_species:
+        density_mod = int(input(name + " spawn density, 0 - 5? 0 = Absent, 5 = Dominant"))
+        add_density_mod = random.randrange(4)
+        if name == "rex" and density_mod < 3:
+            density_list[5] = density_list[5] * density_mod
+        if density_mod != 0:
+            density_mod = density_mod + add_density_mod
+        density_list[increment_num] = density_list[increment_num] * density_mod
+        increment_num = increment_num + 1
+    return density_list
+
+
+def game_start(spawndensity):
+    Stego = spawndensity[0]
+    Anky = spawndensity[1]
+    Para = spawndensity[2]
+    Trike = spawndensity[3]
+    Cerato = spawndensity[4]
+    Rex = spawndensity[5]
+    
+    dinos_spawned = [Stego, Anky, Para, Trike, Cerato, Rex]
+    species_spawned = ["Stego", "Anky", "Para", "Trike", "Cerato", "Rex"]
+    
+
+    dino_m_f(dinos_spawned, species_spawned)
+    
+    dino_skin(dinos_spawned, species_spawned)
+    
+    
+def dino_m_f(dinos_spawned, species):
+    index_increment = 0
+    for name in dinos_spawned:
+        for i in range(dinos_spawned[index_increment]):
+            determine = random.randrange(101)
+            if determine > 50:
+                print("This", species[index_increment], "is male")
+            else:
+                print("This", species[index_increment], "is female")
+        print("")
+        index_increment = index_increment + 1
+
+        
+def dino_skin(dinos_spawned, species):
+    index_increment = 0
+    
+    stego_uncommon_skins = ["Mojave", "Cinnamon", "Jungle"]
+    stego_rare_skins = ["Leucistic", "Melanistic", "Albino"]
+    
+    anky_uncommon_skins = ["Pewter", "Coral", "Jungle"]
+    anky_rare_skins = ["Leucistic", "Melanistic", "Albino"]
+    
+    para_uncommon_skins = ["Fire", "Ghost", "Jungle"]
+    para_rare_skins = ["Leucistic", "Melanistic", "Albino"]
+    
+    trike_uncommon_skins = ["Vanilla", "Sunset", "Jungle"]
+    trike_rare_skins = ["Lavender", "Grey", "Albino"]
+    
+    cerato_uncommon_skins = ["Chocolate", "Tiger", "Jungle"]
+    cerato_rare_skins = ["Leucistic", "Melanistic", "Lemon"]
+    
+    rex_uncommon_skins = ["Axantic", "Phantom", "Jungle"]
+    rex_rare_skins = ["Pastel", "Enchi", "Albino"]
+    
+    for name in dinos_spawned:
+        for i in range(dinos_spawned[index_increment]):
+            determine = random.randrange(101)
+            if determine <= 70:
+                print("This", species[index_increment], "is common")
+            if determine >= 71 and determine < 100:
+                rand_skin = random.randrange(3)
+                if species[index_increment] == "Stego":
+                    skin = stego_uncommon_skins[rand_skin]
+                if species[index_increment] == "Anky":
+                    skin = anky_uncommon_skins[rand_skin]
+                if species[index_increment] == "Para":
+                    skin = para_uncommon_skins[rand_skin]
+                if species[index_increment] == "Trike":
+                    skin = trike_uncommon_skins[rand_skin]
+                if species[index_increment] == "Cerato":
+                    skin = cerato_uncommon_skins[rand_skin]
+                if species[index_increment] == "Rex":
+                    skin = rex_uncommon_skins[rand_skin]
+                print("This", species[index_increment], "is uncommon and ", skin)
+            if determine == 100:
+                rand_skin = random.randrange(3)
+                if species[index_increment] != "Rex" and species[index_increment] != "Trike" and species[index_increment] != "Cerato":
+                    skin = stego_rare_skins[rand_skin]
+                if species[index_increment] == "Rex":
+                    skin = rex_rare_skins[rand_skin]
+                if species[index_increment] == "Trike":
+                    skin = trike_rare_skins[rand_skin]
+                if species[index_increment] == "Cerato":
+                    skin = cerato_rare_skins[rand_skin]
+                
+                print("This", species[index_increment], "is rare and ", skin)
+
+        print("")
+        index_increment = index_increment + 1
+        
+        
+spawndensity = prompt()
+print(spawndensity)
+
+game_start(spawndensity)
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+CODE ENDS BEFORE THIS LINE
+
+Possible Output if the user enters: 0, 0, 0, 5, 5, 1:
+
+
+
+[0, 0, 0, 15, 12, 2]
+
+
+
+This Trike is male
+This Trike is male
+This Trike is female
+This Trike is male
+This Trike is female
+This Trike is female
+This Trike is male
+This Trike is female
+This Trike is male
+This Trike is female
+This Trike is female
+This Trike is male
+This Trike is female
+This Trike is female
+This Trike is female
+
+This Cerato is male
+This Cerato is female
+This Cerato is female
+This Cerato is male
+This Cerato is female
+This Cerato is male
+This Cerato is male
+This Cerato is female
+This Cerato is male
+This Cerato is male
+This Cerato is female
+This Cerato is male
+
+This Rex is female
+This Rex is male
+
+
+
+
+This Trike is uncommon and  Vanilla
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is uncommon and  Sunset
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+This Trike is common
+
+This Cerato is common
+This Cerato is common
+This Cerato is uncommon and  Jungle
+This Cerato is common
+This Cerato is common
+This Cerato is rare and  Leucistic
+This Cerato is uncommon and  Jungle
+This Cerato is common
+This Cerato is uncommon and  Chocolate
+This Cerato is common
+This Cerato is common
+This Cerato is common
+
+This Rex is common
+This Rex is uncommon and  Jungle
+
+
+
