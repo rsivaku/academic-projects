@@ -1,0 +1,33 @@
+Task:
+
+The trigonometry book says: sin(t) - tan(t)* cos(t) = 0
+
+Write a Python program that verifies the formula with the help of the Python Math library.
+Note that the library trigonometric functions act on the angles in radians.
+Your program should perform the following steps 3 times: i) pick a random number between 0 and 180 representing an angle in degrees, say Dangle ii) convert the angle from degrees to radians, say Rangle iii) use the Math library to find and print the values of sin(Rangle) , cos(Rangle), and tan(Rangle), and iv) compute and print the value of the above expression.
+You can then visually verify if the result printed is 0 (or close to it).
+
+
+
+CODE STARTS BELOW THIS LINE
+-----------------------------------------------------------------------------------------------------------------
+
+
+import math
+import random
+
+
+for i in range(3):
+    # An angle degree from 0-180 is randomly selected and assigned as dangle (degree angle)
+    dangle = random.randrange(0,181)
+    print("The angle selected at trandom is", dangle)
+    
+    # Angle is converted to radians and assigned as rangle (radian angle)
+    rangle = math.radians(dangle)
+    print("The angle t in radians is:", rangle)
+    
+    # Trig calculation using the radian angle value; result is printed.
+    trig_calculation = math.sin(rangle) - math.tan(rangle) * math.cos(rangle)
+    print("sin(t) - tan(t) * cos(t) is:", trig_calculation)
+    
+    print("")
